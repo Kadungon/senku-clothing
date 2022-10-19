@@ -12,17 +12,22 @@ export const UserContext = createContext({
 
 export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const [size, setSize] = useState(null);
   const value = { currentUser, setCurrentUser };
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
-      if (user) {
-        createUserDocumentFromAuth(user);
-      }
-      setCurrentUser(user);
-    });
+  const checkSize = () => {
+    console.log(window.innerWidth);
+    setSize(window.innerWidth);
+  };
 
-    return unsubscribe;
+  useEffect(() => {
+    console.log("use-effect");
+    window.addEventListener("resize", checkSize);
+
+    return () => {
+      console.log("clean");
+      window.removeEventListener("resize", checkSize);
+    };
   }, []);
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
