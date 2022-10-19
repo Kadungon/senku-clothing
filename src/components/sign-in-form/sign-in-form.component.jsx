@@ -31,7 +31,7 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      await signInAuthUserWithEmailAndPassword;
+      await signInAuthUserWithEmailAndPassword(email, password);
 
       resetFormFields();
     } catch (error) {
@@ -53,8 +53,6 @@ const SignInForm = () => {
 
     setFormFields({ ...formFields, [name]: value });
   };
-
-  console.log("sign-in");
 
   return (
     <div className="sign-up-container">
