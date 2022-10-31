@@ -5,7 +5,6 @@ import "./cart-icon.styles.scss";
 
 const CartIcon = () => {
   const { isCartOpen, setIsCartOpen, cartCount } = useContext(CartContext);
-  console.log(cartCount);
 
   const handleClick = () => {
     setIsCartOpen(!isCartOpen);
