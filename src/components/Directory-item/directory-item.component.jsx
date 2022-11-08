@@ -1,19 +1,19 @@
 import {
   BackgroundImage,
   Body,
-  DirectoryContainer,
+  DirectoryItemContainer,
 } from "./directory-item.styles.jsx";
 
 const Directorytem = ({ category }) => {
   const { imageUrl, title } = category;
   return (
-    <DirectoryContainer>
+    <DirectoryItemContainer>
       <BackgroundImage imageUrl={imageUrl} />
       <Body>
         <h2>{title}</h2>
         <p>Shop Now</p>
       </Body>
-    </DirectoryContainer>
+    </DirectoryItemContainer>
   );
 };
 

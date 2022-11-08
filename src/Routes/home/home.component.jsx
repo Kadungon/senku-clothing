@@ -1,10 +1,7 @@
-import { categories } from "./categories";
 import Directory from "../../components/directory/directory-component";
 
 const Home = () => {
-    return (
-        <Directory categories={categories} />
-    )
-}
+  return <Directory />;
+};
 
 export default Home;
