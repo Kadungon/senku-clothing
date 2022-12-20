@@ -28,7 +28,10 @@ const PaymentForm = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ amount: amount * 100 }),
+      body: JSON.stringify({
+        amount: amount * 100,
+        description: "Software development services",
+      }),
     }).then((res) => {
       return res.json();
     });
@@ -39,7 +42,12 @@ const PaymentForm = () => {
       payment_method: {
         card: elements.getElement(CardElement),
         billing_details: {
-          name: currentUser ? currentUser.displayName : "Yihua Zhang",
+          name: currentUser ? currentUser.displayName : "Guest",
+          "address[line1]": "510 Townsend St",
+          "address[postal_code]": "98140",
+          "address[city]": "San Francisco",
+          "address[state]": "CA",
+          "address[country]": "US",
         },
       },
     });
