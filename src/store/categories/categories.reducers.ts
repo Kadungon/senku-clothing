@@ -1,20 +1,21 @@
 import { CATEGORIES_ACTION_TYPES } from "./categories.types";
-const DEFAULT_STATE = {
+import { CategoryAction } from "./categories.actions";
+
+const CATAGORY_DEFAULT_STATE = {
   categories: [],
   isLoading: false,
   error: null,
 };
+export const categoriesReducers = (state = CATAGORY_DEFAULT_STATE, action = {} as CategoryAction ) => {
+  
 
-export const categoriesReducers = (state = DEFAULT_STATE, action) => {
-  const { type, payload } = action;
-
-  switch (type) {
+  switch (action.type) {
     case CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START:
       return { ...state, isLoading: true };
     case CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_SUCCESS:
-      return { ...state, categories: payload, isLoading: false };
+      return { ...state, categories: action.payload, isLoading: false };
     case CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_ERROR:
-      return { ...state, error: payload, isLoading: false };
+      return { ...state, error: action, isLoading: false };
 
     default:
       return state;
