@@ -1,6 +1,7 @@
 import { createSelector } from "reselect";
+import { CartState } from "./cart.reducer";
 
-export const selectCartReducer = (state) => state.cart;
+export const selectCartReducer = (state):CartState => state.cart;
 
 export const selectIsCartOpen = createSelector(
   [selectCartReducer],
@@ -23,9 +24,7 @@ export const selectCartCount = createSelector(
 
 export const selectCartTotal = createSelector(
   [selectCartItems],
-  (cartItems) => {
-    return cartItems.reduce((accumulator, item) => {
-      return accumulator + item.price * item.quantity;
-    }, 0);
-  }
+  (cartItems) => 
+   cartItems.reduce((total, item) => total + item.quantity * item.price, 0)
+  
 );

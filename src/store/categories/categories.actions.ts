@@ -20,7 +20,8 @@ export type CategoryAction =
   | FetchCategoriesStart
   | FetchCategoriesSuccess
   | FetchCategoriesError;
-export const fetchCategoriesStart = withMatcher(() => 
+
+export const fetchCategoriesStart = withMatcher(() =>
   createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START)
 );
 
