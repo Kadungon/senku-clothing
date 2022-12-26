@@ -11,8 +11,10 @@ export type FetchCategoriesSuccess = ActionWithPayload<
   CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_SUCCESS,
   Category[]
 >;
-export type FetchCategoriesError =
-  Action<CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_ERROR>;
+export type FetchCategoriesError = ActionWithPayload<
+  CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_ERROR,
+  Error
+>;
 export type CategoryAction =
   | FetchCategoriesStart
   | FetchCategoriesSuccess

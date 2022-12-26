@@ -63,11 +63,7 @@ export const getCollectionAndDocuments = async (collectionKey) => {
 
   const querySnapshot = await getDocs(q);
 
-  const categories = querySnapshot.docs;
-
-  console.log(categories);
-
-  return categories;
+  return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
 };
 
 export const createUserDocumentFromAuth = async (
