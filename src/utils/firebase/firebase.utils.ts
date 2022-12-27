@@ -34,6 +34,7 @@ const firebaseConfig = {
   appId: "1:406436172965:web:b2facbb3face01f2b6694c",
 };
 
+// eslint-disable-next-line
 const firebaseApp = initializeApp(firebaseConfig);
 
 const provider = new GoogleAuthProvider();
@@ -75,11 +76,11 @@ export const getCollectionAndDocuments = async (collectionKey: string): Promise<
   return querySnapshot.docs.map((docSnapshot) => docSnapshot.data() as Category);
 };
 
-type AdditionalInformation = {
+export type AdditionalInformation = {
    displayName?: string,
 }
 
-type UserData = {
+export type UserData = {
   displayName: string,
   createdAt: Date,
   email: string
