@@ -1,4 +1,4 @@
-import { CATEGORIES_ACTION_TYPES, Category } from "./categories.types";
+import { Category } from "./categories.types";
 import {
   CategoryAction,
   fetchCategoriesStart,
