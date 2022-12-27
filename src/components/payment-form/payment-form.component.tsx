@@ -15,6 +15,14 @@ const ifValidCardElement = (
   card: StripeCardElement | null
 ): card is StripeCardElement => card !== null;
 
+const address = {
+  line1: "510 Townsend St",
+  postal_code: "98140",
+  city: "San Francisco",
+  state: "CA",
+  country: "US"
+}
+
 const PaymentForm = () => {
   const stripe = useStripe();
   const elements = useElements();
@@ -48,13 +56,7 @@ const PaymentForm = () => {
 
     if (!ifValidCardElement(cardDetails)) return;
 
-    const address = {
-      line1: "510 Townsend St",
-      postal_code: "98140",
-      city: "San Francisco",
-      state: "CA",
-      country: "US"
-    }
+
 
     const paymentResult = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
