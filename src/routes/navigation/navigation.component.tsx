@@ -14,7 +14,7 @@ import {
   NavLinksContainer,
   NavLinks,
   LogoContainer,
-} from "./navigation.styles.jsx";
+} from "./navigation.styles";
 
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 
