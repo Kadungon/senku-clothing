@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getCollectionAndDocuments } from "../../utils/firebase/firebase.utils";
 
 const INITIAL_STATE = {
@@ -7,20 +7,42 @@ const INITIAL_STATE = {
   error: null,
 };
 
+export const fetchCategories = createAsyncThunk(
+  "categories/fetchCategories",
+  async () => {
+    const categories = await getCollectionAndDocuments("categories");
+    return categories;
+  }
+);
+
+/* export const fetchCategoriesAsync = () => async (dispatch) => {
+  dispatch(fetchCategoriesStart());
+
+  try {
+    const categories = await getCollectionAndDocuments("categories");
+    dispatch(fetchCategoriesSuccess(categories));
+  } catch (error) {
+    dispatch(fetchCategoriesError(error));
+  }
+}; */
+
 export const categoriesSlice = createSlice({
   name: "categories",
   initialState: INITIAL_STATE,
-  reducers: {
-    fetchCategoriesStart(state) {
-      state.isLoading = true;
-    },
-    fetchCategoriesSuccess(state, action) {
-      state.categories = action.payload;
-      state.isLoading = false;
-    },
-    fetchCategoriesError(state, action) {
-      state.error = action.payload;
-    },
+  reducers: {},
+  extraReducers(builder) {
+    builder
+      .addCase(fetchCategories.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchCategories.fulfilled, (state, action) => {
+        state.categories = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchCategories.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.isLoading = false;
+      });
   },
 });
 
@@ -31,14 +53,3 @@ export const {
 } = categoriesSlice.actions;
 
 export const categoriesReducer = categoriesSlice.reducer;
-
-export const fetchCategoriesAsync = () => async (dispatch) => {
-  dispatch(fetchCategoriesStart());
-
-  try {
-    const categories = await getCollectionAndDocuments("categories");
-    dispatch(fetchCategoriesSuccess(categories));
-  } catch (error) {
-    dispatch(fetchCategoriesError(error));
-  }
-};
