@@ -16,7 +16,7 @@ import {
   createUserDocumentFromAuth,
 } from "./utils/firebase/firebase.utils";
 
-import { setCurrentUser } from "./store/user/user.action";
+import { setCurrentUser } from "./store/user/user.reducer";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -26,7 +26,11 @@ const App = () => {
       if (user) {
         createUserDocumentFromAuth(user);
       }
-      dispatch(setCurrentUser(user));
+      const filter = ({ accessToken, email }) => ({ accessToken, email });
+
+      const pickedUser = user && filter(user);
+      console.log(pickedUser);
+      dispatch(setCurrentUser(pickedUser));
     });
 
     return unsubscribe;
